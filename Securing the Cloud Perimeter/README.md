@@ -4,6 +4,8 @@ This project documents the foundational architecture, initial configuration, and
 
 By establishing distinct administrative groups, deploying vetted permission sets, and enforcing the Principle of Least Privilege (PoLP), this architecture systematically reduces the cloud tenant's attack surface. Instead of relying on vulnerable, long-lived access keys or allowing engineers to operate with unrestricted root credentials, this setup transitions the environment to a secure, audit-ready workforce directory. This baseline configuration serves as the hardened, production-grade foundation for all future security operations, logging deployments, and infrastructure labs within this ecosystem.
 
+This documentation doubles as a hands-on project write-up and a practical guide for anyone looking to build or audit their own cloud security perimeter. If you are following along with these steps to harden your own sandbox and run into any technical hurdles or have questions about the architectural choices, please feel free to reach out to me directly on [LinkedIn](https://linkedin.com/in/haydn-kuti).
+
 ---
 
 ## IAM Identity Center: Initialization and Root Hardening
