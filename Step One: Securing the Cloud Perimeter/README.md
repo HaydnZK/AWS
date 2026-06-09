@@ -67,6 +67,7 @@ To build out a resilient structural framework that simulates a cross-functional 
 1. Click the **Create group** button to open the configuration dashboard.
 2. Define explicit group names and detailed operational descriptions that cleanly separate duties across three distinct organizational lanes:
 * **`NetOps_Admin`:** Dedicated to network infrastructure engineers. This team manages core connectivity architecture, virtual private clouds (VPCs), transit gateways, routing tables, and perimeter firewall structures.
+  * Edit: Just a quick heads up for future lab steps. If you're using the NetOps_Admin role like I am, you'll actually need to go into the root account under IAM Identity Center and add the `AmazonEC2FullAccess` policy directly to that permission set. By default, it only has network rights, which will cause a validation error when you try to launch the instance later on. Adding that policy fixes it right up.
 * **`SysOps_Admin`:** Dedicated to systems engineers responsible for core workload operations, handling compute orchestration, provisioning, systems lifecycle management, and daily configuration tasks.
 * **`SecOps_Audit`:** Dedicated to the security operations and compliance team. This identity boundary is designed strictly for continuous observation, compliance checking, security log monitoring, and threat visibility without infrastructure modification privileges.
 
