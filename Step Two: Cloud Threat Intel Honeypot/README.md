@@ -1,3 +1,5 @@
+# Step Two: Cloud Threat Intel Honeypot
+## Project Description
 This project is a deep dive into building an end-to-end detection pipeline that traps attacker behavior and streams it directly into the cloud. The goal was to stand up a medium-interaction Cowrie honeypot, disguise it as an open SSH server, and securely forward all the brute-force attempts and shell commands into AWS CloudWatch for analysis. This sets up a realistic way to safely analyze threat intelligence and watch what attackers are doing in real time.
 
 Architecturally, the setup focuses heavily on cloud security best practices and endpoint hardening. The honeypot runs inside an isolated Python virtual environment and uses authbind so it can listen on port 22 without running as root. To keep the infrastructure secure, a custom CloudWatch agent ships the logs across a private VPC Endpoint, keeping our management traffic off the public internet. Best of all, the entire pipeline is designed to run completely within the AWS Free Tier, making it an affordable way to build production-grade security logging.
