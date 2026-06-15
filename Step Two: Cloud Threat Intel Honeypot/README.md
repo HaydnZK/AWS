@@ -176,9 +176,6 @@ Deploying our virtual machine is where the project really starts getting fun. AW
 * **Architecture:** Leave this set to **64-bit (x86)** or **amd64**. This is standard for most software packages and ensures compatibility with the dependencies we will install later.
 * **Instance type:** Select **t3.micro** from the dropdown menu. If your chosen region only supports **t2.micro** for the free tier, that works perfectly fine too. For a basic honeypot running a single service, we do not need significant CPU or memory performance. The micro instances give us a balance of 2 vCPUs and 1 GiB of RAM, which easily handles simultaneous automated scanning traffic without incurring any monthly costs.
 
-Here is the expanded section for the key pair configuration.
-
----
 
 ### Key Pair Generation
 Defining the network architecture for our instance ensures it actually uses the custom, isolated environment we built in Phase 1. By default, AWS will try to dump new instances into a generic default VPC with automated rules that can expose your infrastructure or run up a bill. By explicitly mapping our virtual machine to our custom Honeypot VPC and public subnet, we maintain total control over the traffic boundaries and ensure our management access remains strictly locked down to our own IP address.
