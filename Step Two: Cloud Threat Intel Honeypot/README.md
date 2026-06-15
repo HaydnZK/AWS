@@ -3,6 +3,9 @@
 This project documents the end-to-end design, deployment, and hardening of a cloud-native, high-interaction SSH honeypot using Cowrie on AWS. The primary objective is to capture and analyze real-time adversarial behavior within a completely isolated architecture. By shifting administrative access to a secure custom port and leveraging strict egress filtering via an AWS Security Group, the host is protected against exploitation. Telemetry is securely funneled off the public internet using an AWS VPC Endpoint (PrivateLink) and a centralized CloudWatch agent, providing a safe, invisible pipeline for deep-dive threat intelligence gathering and digital forensics analysis.
 
 ### Project Roadmap & Architecture Index
+<details>
+<summary><b>Click to expand Project Roadmap & Architecture Index</b></summary>
+
 * Phase 1: Foundations of Cloud Networking
   * **Phase Focus:** Designing the core AWS network topology and establishing initial defensive perimeter boundaries.
   * **Documented Subsections:**
@@ -66,6 +69,8 @@ This project documents the end-to-end design, deployment, and hardening of a clo
 * Conclusion & Reflections
   * **Documented Subsections:**
     * Final Thoughts
+
+</details>
 
 ---
 
