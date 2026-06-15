@@ -3,64 +3,69 @@
 This project documents the end-to-end design, deployment, and hardening of a cloud-native, high-interaction SSH honeypot using Cowrie on AWS. The primary objective is to capture and analyze real-time adversarial behavior within a completely isolated architecture. By shifting administrative access to a secure custom port and leveraging strict egress filtering via an AWS Security Group, the host is protected against exploitation. Telemetry is securely funneled off the public internet using an AWS VPC Endpoint (PrivateLink) and a centralized CloudWatch agent, providing a safe, invisible pipeline for deep-dive threat intelligence gathering and digital forensics analysis.
 
 ### Project Roadmap & Architecture Index
+* Phase 1: Foundations of Cloud Networking
+  * **Phase Focus:** Designing the core AWS network topology and establishing initial defensive perimeter boundaries.
+  * **Documented Subsections:**
+    * Creating the Virtual Private Cloud (VPC)
+    * Provisioning the Public Subnet
+    * Internet Gateway (IGW) Deployment
+    * Custom Route Table & Subnet Association
+    * Defensive Firewalls: Security Group Configuration
 
-| Phase | Phase Focus | Documented Subsections |
-| --- | --- | --- |
-| **Phase 1** | **Network Architecture & Infrastructure** | * Custom VPC Design<br>
+* Phase 2: Virtual Machine Provisioning & Instance Hardening
+  * **Phase Focus:** Deploying the target Ubuntu host and managing secure access keys.
+  * **Documented Subsections:**
+    * Launching the EC2 Instance
+    * Key Pair Generation
+    * Extra Note
+    * Network Configuration & Instance Deployment
 
-<br>* Public Subnet & Internet Gateway Routing<br>
+* Phase 3: Operating System Configuration & Port Hardening
+  * **Phase Focus:** Moving the real management plane to a custom socket to prepare port 22 for deception operations.
+  * **Documented Subsections:**
+    * Initial SSH Access & Environment Reconnaissance
+    * Modifying the SSH Socket for Honeypot Preparation
+    * Updating Security Group Rules for the Custom Management Port
+      * **Troubleshooting SSH Connection**
+    * Verifying the New Management Connection
+    * Modifying Network Access Controls for Package Installation
+    * Installing Core Dependencies and Development Tools
 
-<br>* Security Group Blueprint (Initial Inbound/Outbound) |
-| **Phase 2** | **EC2 Provisioning & Initial Deployment** | * Choosing the AMI (Ubuntu Server)<br>
+* Phase 4: Cowrie Installation & Environment Setup
+  * **Phase Focus:** Provisions an unprivileged user space and configuring the core honeypot environment variables.
+  * **Documented Subsections:**
+    * Creating the Dedicated Honeypot User
+    * Cloning the Repository & Establishing the Python Environment
+    * Initializing the Configuration Files
+      * **Troubleshooting Low-Port Binding & Authbind Configuration**
 
-<br>* Key Pair Generation & Management<br>
+* Phase 5: Cowrie Deployment, Exposure, & Attack Validation
+  * **Phase Focus:** Bringing the honeypot live, revoking internet access rules, and engaging the public firewall.
+  * **Documented Subsections:**
+    * Executing the Application Build and Adjusting Configuration Layers
+    * Exposing the Honeypot to the Public Internet
+    * Validating Inbound Attacks & Monitoring Live Logs
 
-<br>* Network Configuration & Instance Deployment |
-| **Phase 3** | **Operating System Configuration & Port Hardening** | * Initial SSH Access & Environment Reconnaissance<br>
+* Phase 6: CloudWatch Integration & Private Network Bridging
+  * **Phase Focus:** Designing an isolated internal AWS VPC Endpoint bridge to stream telemetry off the public internet grid.
+  * **Documented Subsections:**
+    * Provisioning the IAM Logging Role
+    * Attaching the Identity Profile to the Virtual Machine
+    * Constructing the Private VPC Endpoint Bridge
+    * Collecting Network Identifiers for Final Configuration
+    * Configuring the Centralized Logging Agent
+    * Staging and Installing the Agent Package
+    * Activating and Validating the Cloud Logging Pipeline
 
-<br>* Modifying the SSH Socket for Honeypot Preparation<br>
+* Phase 7: Post-Deployment Troubleshooting & Live Attack Analysis
+  * **Phase Focus:** Remediation of environmental software conflicts, real-time logging validation, and cost mitigation rules.
+  * **Documented Subsections:**
+      * **Troubleshooting Stale PID Files and Twistd Permissions**
+    * **Validating CloudWatch Alert Ingestion**
 
-<br>* Updating Security Group Rules for the Custom Management Port<br>
-
-<br>* *Troubleshooting SSH Connection*<br>
-
-<br>* Verifying the New Management Connection<br>
-
-<br>* Modifying Network Access Controls for Package Installation<br>
-
-<br>* Installing Core Dependencies and Development Tools |
-| **Phase 4** | **Cowrie Installation & Environment Setup** | * Creating the Dedicated Honeypot User<br>
-
-<br>* Cloning the Repository & Establishing the Python Environment<br>
-
-<br>* Initializing the Configuration Files<br>
-
-<br>* *Troubleshooting Low-Port Binding & Authbind Configuration* |
-| **Phase 5** | **Cowrie Deployment, Exposure, & Attack Validation** | * Executing the Application Build and Adjusting Configuration Layers<br>
-
-<br>* Exposing the Honeypot to the Public Internet<br>
-
-<br>* Validating Inbound Attacks & Monitoring Live Logs |
-| **Phase 6** | **CloudWatch Integration & Private Network Bridging** | * Provisioning the IAM Logging Role<br>
-
-<br>* Attaching the Identity Profile to the Virtual Machine<br>
-
-<br>* Constructing the Private VPC Endpoint Bridge<br>
-
-<br>* Collecting Network Identifiers for Final Configuration<br>
-
-<br>* Configuring the Centralized Logging Agent<br>
-
-<br>* Staging and Installing the Agent Package<br>
-
-<br>* Activating and Validating the Cloud Logging Pipeline |
-| **Phase 7** | **Post-Deployment Troubleshooting & Live Attack Analysis** | * *Troubleshooting Stale PID Files and Twistd Permissions*<br>
-
-<br>* Validating CloudWatch Alert Ingestion<br>
-
-<br>* Project Closeout: Infrastructure Decommissioning & Cost Management<br>
-
-<br>* Conclusion & Reflections |
+* Conclusion & Reflections
+  * **Documented Subsections:**
+    * Final Thoughts
 
 ---
 
@@ -236,6 +241,7 @@ ssh -i <your-honeypot-pem> ubuntu@<honeypots-current-public-IP>
 * Running `pwd` shows your current working directory is `/home/ubuntu`.
 * Running `ls` returns no files, confirming a clean, default installation state.
 
+
 ### Modifying the SSH Socket for Honeypot Preparation
 Our ultimate goal is to catch attackers attempting to brute-force port 22, the standard port for SSH. To achieve this without losing administrative access, we need to reconfigure the actual SSH daemon to listen on a non-standard, custom high port. This leaves port 22 wide open for our Cowrie deployment to bind to later. Modern Ubuntu installations manage SSH connections via systemd sockets rather than traditional flat configuration files alone, meaning we modify the socket behavior directly.
 1. Open the systemd override configuration for the SSH socket by running:
@@ -392,6 +398,7 @@ sudo su - cowrie
 ```
 
 You'll notice your terminal prompt changes to `cowrie@<ip>:~$`, and running `pwd` will confirm you're safely isolated inside the `/home/cowrie` directory.
+
 
 ### Cloning the Repository & Establishing the Python Environment
 Now that we are operating under our restricted user account, we can pull down the source code and build out an isolated execution environment for the application dependencies.
@@ -618,6 +625,7 @@ AWS uses IAM roles to grant permissions to resources like EC2 instances without 
 
 8. Click **Create role**.
 
+
 ### Attaching the Identity Profile to the Virtual Machine
 Now that the role exists within our AWS account, we must explicitly pin it to our active honeypot instance so the operating system can inherit the necessary API permissions.
 1. Navigate back to the **EC2 Dashboard** and click **Instances (running)**.
@@ -625,6 +633,7 @@ Now that the role exists within our AWS account, we must explicitly pin it to ou
 3. Select **Security** from the context menu, then click **Modify IAM role**.
 4. In the **IAM role** dropdown menu, select the `EC2-CloudWatch-Logging-Role` you created in the previous step.
 5. Click **Update IAM role** to commit the permission profile to the running virtual machine.
+
 
 ### Constructing the Private VPC Endpoint Bridge
 To securely transmit logs to CloudWatch without opening our instance's outbound rules to the public internet via ports 80 or 443, we will deploy an interface VPC Endpoint. This spins up a private, internal network bridge that securely routes traffic directly from our isolated VPC to the CloudWatch logging service over the AWS internal backbone.
@@ -649,6 +658,7 @@ To securely transmit logs to CloudWatch without opening our instance's outbound 
 * **IP address type:** Select **IPv4**.
 
 8. Scroll to the bottom and click **Create endpoint**.
+
 
 ### Collecting Network Identifiers for Final Configuration
 To wrap up our network bridging phase, we need to collect a few specific identifiers from our infrastructure that the logging agent will require later to route data properly.
@@ -716,6 +726,7 @@ sudo dpkg -i -E /tmp/amazon-cloudwatch-agent.deb
 ```
 
 The installer will create the necessary background service groups, initialize system accounts, and deploy the core binaries.
+
 
 ### Activating and Validating the Cloud Logging Pipeline
 With the package deployed and our configuration profile manually placed, we can initialize the engine daemon.
@@ -785,6 +796,7 @@ ss -tlnp
 
 The output will confirm that the process is back in a healthy `LISTEN` state on port 22.
 
+
 #### **Validating CloudWatch Alert Ingestion**
 With the engine stabilized, you can perform a live verification of the complete log streaming pipeline.
 1. Open a new terminal session on your local management workstation and deliberately trigger the honeypot entryway:
@@ -799,7 +811,7 @@ The CloudWatch console will render your live attack events in real time. If a pe
 
 ---
 
-### Conclusion & Reflections
+## Conclusion & Reflections
 Building and deploying this high-interaction SSH honeypot bridges the gap between theoretical cloud architecture and defensive security operations. By taking a default AWS instance and transforming it into a hardened, isolated detection environment, this project demonstrates a deep dive into several core blue team and engineering domains:
 
 * **Secure Network Architecture:** Enforcing strict egress filtering and implementing VPC Endpoints to ensure that even if an application layer is compromised, the underlying blast radius is completely contained.
@@ -807,7 +819,7 @@ Building and deploying this high-interaction SSH honeypot bridges the gap betwee
 * **System Hardening & Port Manipulation:** Reconfiguring low-level systemd socket behaviors to safely separate the true administrative management plane from public-facing deception traps.
 * **Centralized Log Auditing:** Constructing a private pipeline to stream live, structured JSON event data directly into cloud monitoring pools for real-time analysis.
 
-#### **Final Thoughts**
+### Final Thoughts
 Watching an adversary interact with a system you built is one of the most effective ways to understand threat actor behavior. Whether analyzing automated botnet password sprays or tracing the deliberate, hands-on commands of a peer conducting a penetration test, the telemetry captured here provides raw insight into the modern threat landscape.
 
 Ultimately, defensive security isn't just about building walls; it's about visibility, containment, and understanding the adversary's playbook. This project serves as a functional blueprint for deploying cloud-native deception technology safely, efficiently, and with total control over the data pipeline.
