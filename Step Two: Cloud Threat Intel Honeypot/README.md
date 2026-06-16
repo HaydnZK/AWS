@@ -18,8 +18,8 @@ This project documents the end-to-end design, deployment, and hardening of a clo
 * [Phase 2: Virtual Machine Provisioning & Instance Hardening](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-2-virtual-machine-provisioning--instance-hardening)
   * **Phase Focus:** Deploying the target Ubuntu host and managing secure access keys.
   * **Documented Subsections:**
-    * [Launching the EC2 Instance](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#launching-the-ec2-instance))
-    * [Key Pair Generation]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#key-pair-generation)
+    * [Launching the EC2 Instance](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#launching-the-ec2-instance)
+    * [Key Pair Generation](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#key-pair-generation)
       * [Extra Note](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#extra-note)
     * [Network Configuration & Instance Deployment](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#network-configuration--instance-deployment)
 
