@@ -6,69 +6,69 @@ This project documents the end-to-end design, deployment, and hardening of a clo
 <details>
 <summary><b>Click to expand Project Roadmap & Architecture Index</b></summary>
 
-* [Phase 1: Foundations of Cloud Networking]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-1-foundations-of-cloud-networking))
+* [Phase 1: Foundations of Cloud Networking](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-1-foundations-of-cloud-networking)
   * **Phase Focus:** Designing the core AWS network topology and establishing initial defensive perimeter boundaries.
   * **Documented Subsections:**
-    * [Creating the Virtual Private Cloud (VPC)]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#creating-the-virtual-private-cloud-vpc))
-    * [Provisioning the Public Subnet]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#provisioning-the-public-subnet))
-    * [Internet Gateway (IGW) Deployment]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#internet-gateway-igw-deployment))
-    * [Custom Route Table & Subnet Associatio]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#custom-route-table--subnet-association))n
-    * [Defensive Firewalls: Security Group Configuration]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#defensive-firewalls-security-group-configuration))
+    * [Creating the Virtual Private Cloud (VPC)](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#creating-the-virtual-private-cloud-vpc)
+    * [Provisioning the Public Subnet](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#provisioning-the-public-subnet)
+    * [Internet Gateway (IGW) Deployment](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#internet-gateway-igw-deployment)
+    * [Custom Route Table & Subnet Association](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#custom-route-table--subnet-association)
+    * [Defensive Firewalls: Security Group Configuration](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#defensive-firewalls-security-group-configuration)
 
-* [Phase 2: Virtual Machine Provisioning & Instance Hardening]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-2-virtual-machine-provisioning--instance-hardening))
+* [Phase 2: Virtual Machine Provisioning & Instance Hardening](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-2-virtual-machine-provisioning--instance-hardening)
   * **Phase Focus:** Deploying the target Ubuntu host and managing secure access keys.
   * **Documented Subsections:**
-    * [Launching the EC2 Instance]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#launching-the-ec2-instance))
-    * [Key Pair Generation]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#key-pair-generation))
-      * [Extra Note]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#extra-note))
-    * [Network Configuration & Instance Deployment]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#network-configuration--instance-deployment))
+    * [Launching the EC2 Instance](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#launching-the-ec2-instance))
+    * [Key Pair Generation]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#key-pair-generation)
+      * [Extra Note](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#extra-note)
+    * [Network Configuration & Instance Deployment](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#network-configuration--instance-deployment)
 
-* [Phase 3: Operating System Configuration & Port Hardening]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-3-operating-system-configuration--port-hardening))
+* [Phase 3: Operating System Configuration & Port Hardening](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-3-operating-system-configuration--port-hardening)
   * **Phase Focus:** Moving the real management plane to a custom socket to prepare port 22 for deception operations.
   * **Documented Subsections:**
-    * [Initial SSH Access & Environment Reconnaissance]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#initial-ssh-access--environment-reconnaissance))
-    * [Modifying the SSH Socket for Honeypot Preparation]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#modifying-the-ssh-socket-for-honeypot-preparation))
-    * [Updating Security Group Rules for the Custom Management Port]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#updating-security-group-rules-for-the-custom-management-port))
-      * **[Troubleshooting SSH Connection]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#troubleshooting-ssh-connection))**
-    * [Verifying the New Management Connection]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#verifying-the-new-management-connection))
-    * [Modifying Network Access Controls for Package Installation]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#modifying-network-access-controls-for-package-installation))
-    * [Installing Core Dependencies and Development Tools]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#installing-core-dependencies-and-development-tools))
+    * [Initial SSH Access & Environment Reconnaissance](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#initial-ssh-access--environment-reconnaissance)
+    * [Modifying the SSH Socket for Honeypot Preparation](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#modifying-the-ssh-socket-for-honeypot-preparation)
+    * [Updating Security Group Rules for the Custom Management Port](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#updating-security-group-rules-for-the-custom-management-port)
+      * **[Troubleshooting SSH Connection](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#troubleshooting-ssh-connection)**
+    * [Verifying the New Management Connection](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#verifying-the-new-management-connection)
+    * [Modifying Network Access Controls for Package Installation](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#modifying-network-access-controls-for-package-installation)
+    * [Installing Core Dependencies and Development Tools](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#installing-core-dependencies-and-development-tools)
 
-* [Phase 4: Cowrie Installation & Environment Setup]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-4-cowrie-installation--environment-setup))
+* [Phase 4: Cowrie Installation & Environment Setup](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-4-cowrie-installation--environment-setup)
   * **Phase Focus:** Provisions an unprivileged user space and configuring the core honeypot environment variables.
   * **Documented Subsections:**
-    * [Creating the Dedicated Honeypot User]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#creating-the-dedicated-honeypot-user))
-    * [Cloning the Repository & Establishing the Python Environment]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#cloning-the-repository--establishing-the-python-environment))
-    * [Initializing the Configuration Files]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#initializing-the-configuration-files))
-      * **[Troubleshooting Low-Port Binding & Authbind Configuration]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#troubleshooting-low-port-binding--authbind-configuration))**
+    * [Creating the Dedicated Honeypot User](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#creating-the-dedicated-honeypot-user)
+    * [Cloning the Repository & Establishing the Python Environment](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#cloning-the-repository--establishing-the-python-environment)
+    * [Initializing the Configuration Files](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#initializing-the-configuration-files)
+      * **[Troubleshooting Low-Port Binding & Authbind Configuration](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#troubleshooting-low-port-binding--authbind-configuration)**
 
-* [Phase 5: Cowrie Deployment, Exposure, & Attack Validation]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-5-cowrie-deployment-exposure--attack-validation))
+* [Phase 5: Cowrie Deployment, Exposure, & Attack Validation](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-5-cowrie-deployment-exposure--attack-validation)
   * **Phase Focus:** Bringing the honeypot live, revoking internet access rules, and engaging the public firewall.
   * **Documented Subsections:**
-    * [Executing the Application Build and Adjusting Configuration Layers]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#executing-the-application-build-and-adjusting-configuration-layers))
-    * [Exposing the Honeypot to the Public Internet]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#exposing-the-honeypot-to-the-public-internet))
-    * [Validating Inbound Attacks & Monitoring Live Logs]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#validating-inbound-attacks--monitoring-live-logs))
+    * [Executing the Application Build and Adjusting Configuration Layers](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#executing-the-application-build-and-adjusting-configuration-layers)
+    * [Exposing the Honeypot to the Public Internet](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#exposing-the-honeypot-to-the-public-internet)
+    * [Validating Inbound Attacks & Monitoring Live Logs](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#validating-inbound-attacks--monitoring-live-logs)
 
-* [Phase 6: CloudWatch Integration & Private Network Bridging]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-6-cloudwatch-integration--private-network-bridging))
+* [Phase 6: CloudWatch Integration & Private Network Bridging](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-6-cloudwatch-integration--private-network-bridging)
   * **Phase Focus:** Designing an isolated internal AWS VPC Endpoint bridge to stream telemetry off the public internet grid.
   * **Documented Subsections:**
-    * [Provisioning the IAM Logging Role]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#provisioning-the-iam-logging-role))
-    * [Attaching the Identity Profile to the Virtual Machine]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#attaching-the-identity-profile-to-the-virtual-machine))
-    * [Constructing the Private VPC Endpoint Bridge]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#constructing-the-private-vpc-endpoint-bridge))
-    * [Collecting Network Identifiers for Final Configuration]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#collecting-network-identifiers-for-final-configuration))
-    * [Configuring the Centralized Logging Agent]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#configuring-the-centralized-logging-agent))
-    * [Staging and Installing the Agent Package]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#staging-and-installing-the-agent-package))
-    * [Activating and Validating the Cloud Logging Pipeline]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#activating-and-validating-the-cloud-logging-pipeline))
+    * [Provisioning the IAM Logging Role](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#provisioning-the-iam-logging-role)
+    * [Attaching the Identity Profile to the Virtual Machine](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#attaching-the-identity-profile-to-the-virtual-machine)
+    * [Constructing the Private VPC Endpoint Bridge](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#constructing-the-private-vpc-endpoint-bridge)
+    * [Collecting Network Identifiers for Final Configuration](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#collecting-network-identifiers-for-final-configuration)
+    * [Configuring the Centralized Logging Agent](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#configuring-the-centralized-logging-agent)
+    * [Staging and Installing the Agent Package](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#staging-and-installing-the-agent-package)
+    * [Activating and Validating the Cloud Logging Pipeline](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#activating-and-validating-the-cloud-logging-pipeline)
 
-* [Phase 7: Post-Deployment Troubleshooting & Live Attack Analysis]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-7-post-deployment-troubleshooting--live-attack-analysis))
+* [Phase 7: Post-Deployment Troubleshooting & Live Attack Analysis](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#phase-7-post-deployment-troubleshooting--live-attack-analysis)
   * **Phase Focus:** Remediation of environmental software conflicts, real-time logging validation, and cost mitigation rules.
   * **Documented Subsections:**
-      * **[Troubleshooting Stale PID Files and Twistd Permissions]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#troubleshooting-stale-pid-files-and-twistd-permissions))**
-    * **[Validating CloudWatch Alert Ingestion]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#validating-cloudwatch-alert-ingestion))**
+      * **[Troubleshooting Stale PID Files and Twistd Permissions](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#troubleshooting-stale-pid-files-and-twistd-permissions)**
+    * **[Validating CloudWatch Alert Ingestion](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#validating-cloudwatch-alert-ingestion)**
 
-* [Conclusion & Reflections]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#conclusion--reflections))
+* [Conclusion & Reflections](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#conclusion--reflections)
   * **Documented Subsections:**
-    * [Final Thoughts]([url](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#final-thoughts))
+    * [Final Thoughts](https://github.com/HaydnZK/AWS/tree/main/Step%20Two%3A%20Cloud%20Threat%20Intel%20Honeypot#final-thoughts)
 
 </details>
 
